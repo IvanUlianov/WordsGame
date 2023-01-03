@@ -15,7 +15,7 @@ namespace WordGame
                 Console.Write("Введите букву с короторой сегодня играем: ");
                 string? InputGameChar = Console.ReadLine();
 
-                if (InputGameChar != null && InputGameChar != "")
+                if (!string.IsNullOrEmpty(InputGameChar))
                 {
                     InputGameChar = InputGameChar.ToLower().Trim();
 

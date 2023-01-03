@@ -61,7 +61,7 @@ namespace WordGame
                 Console.Write($"Введите слово на букву {gameChar}: ");
                 string? tempWord = Console.ReadLine();
 
-                if (tempWord != null && tempWord != "")
+                if (!string.IsNullOrEmpty(tempWord))
                 {
                     tempWord = tempWord.Trim().ToLower();
 
