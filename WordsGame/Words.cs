@@ -4,10 +4,14 @@ namespace WordGame
 {
     internal class Words
     {
-        internal static string[,] wordsarr = new string[Player.players, 1];
+        internal static string[,] wordsarr;
         internal static char chr = ' ';
         internal static string? word = "";
 
+        private static void SetWords()
+        {
+            wordsarr = new string[Player.players, 1];
+        }
         internal static void SetChar()
         {
             while (true)
@@ -35,7 +39,11 @@ namespace WordGame
         }
         internal static string? CheckWords(string[,] words, string word, char gameChar)
         {
-            if (word.StartsWith(gameChar))
+            if (words == null)
+            {
+                SetWords();
+            }
+            else if (word.StartsWith(gameChar))
             {
                 for (int i = 0; i < words.GetLength(0); i++)
                 {
@@ -60,7 +68,11 @@ namespace WordGame
         }
         internal static void CreateWordsArray(string[,] words, int id, string word)
         {
-            if (!string.IsNullOrEmpty(word))
+            if (words == null)
+            {
+                SetWords();
+            }
+            else if (!string.IsNullOrEmpty(word))
             {
                 string[,] tempArr = new string[words.GetLength(0), words.GetLength(1) + 1];
                 for (int i = 0; i < words.GetLength(0); i++)
@@ -77,44 +89,51 @@ namespace WordGame
 
         internal static void Score(string[,] words, int players)
         {
-            int[,] tempScore = new int[players, 1];
-            int count = 0;
-
-            for (int i = 0; i < words.GetLength(0); i++)
+            if (words != null)
             {
-                for (int j = 0; j < words.GetLength(1); j++)
+                int[,] tempScore = new int[players, 1];
+                int count = 0;
+
+                for (int i = 0; i < words.GetLength(0); i++)
                 {
-                    if (words[i, j] != null)
+                    for (int j = 0; j < words.GetLength(1); j++)
                     {
-                        count++;
-                        tempScore[i, 0] = count;
+                        if (words[i, j] != null)
+                        {
+                            count++;
+                            tempScore[i, 0] = count;
+                        }
+                    }
+                    count = 0;
+                }
+
+                for (int i = 0; i < tempScore.GetLength(0); i++)
+                {
+                    for (int j = 0; j < tempScore.GetLength(1); j++)
+                    {
+                        Console.Write($"У игрока №{i + 1} - {tempScore[i, j]} слов.\n");
                     }
                 }
-                count = 0;
             }
-
-            for (int i = 0; i < tempScore.GetLength(0); i++)
-            {
-                for (int j = 0; j < tempScore.GetLength(1); j++)
-                {
-                    Console.Write($"У игрока №{i + 1} - {tempScore[i, j]} слов.\n");
-                }
-            }
+            else Console.WriteLine("нет игроков");
         }
 
         internal static void PrintArr(string[,] words)
         {
-            for (int i = 0; i < words.GetLength(0); i++)
+            if (words != null)
             {
-                Console.WriteLine($"Слова игрока №{i + 1}:");
-                for (int j = 0; j < words.GetLength(1); j++)
+                for (int i = 0; i < words.GetLength(0); i++)
                 {
-                    if (words[i, j] != null)
+                    Console.WriteLine($"Слова игрока №{i + 1}:");
+                    for (int j = 0; j < words.GetLength(1); j++)
                     {
-                        Console.Write($"{words[i, j]} ");
+                        if (words[i, j] != null)
+                        {
+                            Console.Write($"{words[i, j]} ");
+                        }
                     }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
             }
         }
     }

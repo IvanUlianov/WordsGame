@@ -13,8 +13,7 @@
                 Controls.NumOfPlayers(Player.players);
                 Controls.WordInput(Words.chr);
                 
-                Words.CreateWordsArray(Words.wordsarr, Player.id, Words.word);
-                Words.Score(Words.wordsarr, Player.players);
+                Words.CreateWordsArray(Words.wordsarr, Player.id, Words.word);       
             }
         }
     }

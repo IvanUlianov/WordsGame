@@ -4,8 +4,8 @@ namespace WordGame
 {
     internal class Player
     {
-        internal static int id = 1;
-        internal static int players = 1;
+        internal static int id;
+        internal static int players;
 
         internal static void SetPlayers()
         {

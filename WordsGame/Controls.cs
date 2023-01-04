@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace WordGame
@@ -12,7 +11,7 @@ namespace WordGame
             var color = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
             string instruction = "Привет это игра в слова\n"
-            + "набери !quit для завершения игры, !print для вывода всех слов\n"
+            + "набери !quit для завершения игры, !print для вывода всех слов, !score для вывода счёта\n"
             + "...жми что либо для начала игры...";
 
             Console.WriteLine(instruction);
@@ -95,6 +94,11 @@ namespace WordGame
                     Console.ForegroundColor = ConsoleColor.Green;
                     var arr = Words.wordsarr;
                     Words.PrintArr(arr);
+                    Console.ForegroundColor = color;
+                    break;
+                case ("!score"):
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Words.Score(Words.wordsarr, Player.players);
                     Console.ForegroundColor = color;
                     break;
             }
