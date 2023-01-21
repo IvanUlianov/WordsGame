@@ -16,7 +16,7 @@ namespace WordGame
 		{
 			while (true)
 			{
-				Console.Write("¬ведите букву с которой сегодн€ играем: ");
+				Console.Write("¬ведите букву с которой, сегодн€, играем: ");
 				string? InputGameChar = Console.ReadLine();
 
 				if (!string.IsNullOrEmpty(InputGameChar))
