@@ -19,9 +19,6 @@ namespace WordsGame
             Console.WriteLine(instruction);
             Console.ForegroundColor = color;
             Console.ReadKey();
-
-            //Player.ChoicePlayers();
-            //Words.SetChar();
 		}
 
         internal static void ChoicePlayers(int players)
