@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 namespace WordsGame
 {
-	internal class Player
-	{
+    internal class Player
+    {
 		internal static int id;
 		internal static int players;
 

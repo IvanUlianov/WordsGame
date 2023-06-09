@@ -19,9 +19,45 @@ namespace WordsGame
             Console.WriteLine(instruction);
             Console.ForegroundColor = color;
             Console.ReadKey();
-		}
+
+            while (true)
+            {
+                Console.Write("Введите количество игроков: ");
+                string? InputPlayers = Console.ReadLine();
+
+                if (InputPlayers != "" && InputPlayers != null)
+                {
+                    if (Regex.IsMatch(InputPlayers, @"^[!]")) GameControls(InputPlayers);
+
+                    bool success = int.TryParse(InputPlayers, out int tempPlayers);
+                    if (success && tempPlayers > 0)
+                    {
+                        players = tempPlayers;
+                        Console.WriteLine($"Играет {players} игроков");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{InputPlayers} - не число");
+                    }
+                }
+            }
 
         internal static void ChoicePlayers(int players)
+                    {
+                        gameChar = InputGameChar[0];
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{InputGameChar} - это не буква");
+                    }
+                }
+            }
+
+        }
+
+        internal static void ConsoleInput(ref int id, ref string word, char gameChar, int players)
         {
             while (true)
             {
@@ -68,7 +104,7 @@ namespace WordsGame
                     if (tempWord != gameChar.ToString() && tempWord != "")
                     {
                         Words.word = tempWord;
-						break;
+                        break;
                     }
                     else
                     {
@@ -81,6 +117,7 @@ namespace WordsGame
         internal static void GameControls(string text)
         {
             var color = Console.ForegroundColor;
+
             switch (text)
             {
                 case ("!quit"):

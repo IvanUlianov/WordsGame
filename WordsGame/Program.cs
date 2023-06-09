@@ -1,17 +1,17 @@
 ﻿namespace WordsGame
-{
-	class Program
-	{
-		public static void Main()
-		{
-			Console.Title = "Игра в слова";
+{   
+    class Program
+    {
+        public static void Main()
+        {
+            Console.Title = "Игра в слова";
 			Console.CursorVisible = false;
 
 			Menu.RunMenu();
-			while (true)
-			{
+            while (true)
+            {
 				Menu.Choice(Menu.index);
-			}
-		}
-	}
+            }
+        }
+    }
 }
