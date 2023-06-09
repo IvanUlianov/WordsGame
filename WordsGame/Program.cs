@@ -1,20 +1,25 @@
-﻿namespace WordGame
+﻿namespace WordsGame
 {
 	class Program
 	{
 		public static void Main()
 		{
 			Console.Title = "Игра в слова";
-
-			Controls.Menu();
-
+			Console.CursorVisible = false;
+			Menu.RunMenu();
 			while (true)
 			{
-				Controls.NumOfPlayers(Player.players);
-				Controls.WordInput(Words.chr);
-
-				Words.CreateWordsArray(Words.wordsarr, Player.id, Words.word);
+				Menu.Choice(Menu.index);
 			}
+			//Controls.Menu();
+
+			//while (true)
+			//{
+			//	Controls.ChoicePlayers(Player.players);
+			//	Controls.WordInput(Words.chr);
+
+			//	Words.CreateWordsArray(Words.words_arr, Player.id, Words.word);
+			//}
 		}
 	}
 }

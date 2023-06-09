@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace WordGame
+namespace WordsGame
 {
     internal class Player
     {

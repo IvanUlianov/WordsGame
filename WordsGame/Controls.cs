@@ -1,28 +1,30 @@
 using System.Text.RegularExpressions;
 
-namespace WordGame
+namespace WordsGame
 {
     internal class Controls
     {
-        internal static void Menu()
+        internal static void Options()
         {
             Console.Clear();
 
             var color = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
-            string instruction = "Привет это игра в слова\n"
-            + "набери !quit для завершения игры, !print для вывода всех слов, !score для вывода счёта\n"
+            string instruction = "Доступные команды во время игры.\n"
+            + "!quit для завершения игры,\n"
+            + "!print для вывода всех слов,\n"
+            + "!score для вывода счёта.\n"
             + "...жми что либо для начала игры...";
 
             Console.WriteLine(instruction);
             Console.ForegroundColor = color;
             Console.ReadKey();
 
-            Player.SetPlayers();
-            Words.SetChar();
-        }
+            //Player.ChoicePlayers();
+            //Words.SetChar();
+		}
 
-        internal static void NumOfPlayers(int players)
+        internal static void ChoicePlayers(int players)
         {
             while (true)
             {
@@ -69,7 +71,7 @@ namespace WordGame
                     if (tempWord != gameChar.ToString() && tempWord != "")
                     {
                         Words.word = tempWord;
-                        break;
+						break;
                     }
                     else
                     {
@@ -77,7 +79,7 @@ namespace WordGame
                     }
                 }
             }
-            Words.word = Words.CheckWords(Words.wordsarr, Words.word, Words.chr);
+            Words.word = Words.CheckWords(Words.words_arr, Words.word, Words.chr);
         }
         internal static void GameControls(string text)
         {
@@ -86,19 +88,19 @@ namespace WordGame
             {
                 case ("!quit"):
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Игра законченна...\n жми что-то");
+                    Console.WriteLine("Игра окончена...\n жми что-то");
                     Console.ReadKey();
                     Environment.Exit(0);
                     break;
                 case ("!print"):
                     Console.ForegroundColor = ConsoleColor.Green;
-                    var arr = Words.wordsarr;
+                    var arr = Words.words_arr;
                     Words.PrintArr(arr);
                     Console.ForegroundColor = color;
                     break;
                 case ("!score"):
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Words.Score(Words.wordsarr, Player.players);
+                    Words.Score(Words.words_arr, Player.players);
                     Console.ForegroundColor = color;
                     break;
             }
