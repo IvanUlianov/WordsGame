@@ -49,7 +49,7 @@
 					Console.ForegroundColor = ConsoleColor.White;
 					Console.BackgroundColor = ConsoleColor.Black;
 				}
-				Console.SetCursorPosition(width/2 - 5, (height/2 - length) + i);
+				Console.SetCursorPosition(width/2 - 5, (height - length) / 2 + i);
 				Console.WriteLine($"\t{main_menu[i]}\t");
 			}
 			Console.ResetColor();
@@ -70,6 +70,8 @@
 					break;
 			}
 		}
+
+		protected
 
 
 		private static void ExitGame()

@@ -6,11 +6,13 @@
 		{
 			Console.Title = "Игра в слова";
 			Console.CursorVisible = false;
+
 			Menu.RunMenu();
 			while (true)
 			{
 				Menu.Choice(Menu.index);
 			}
+
 			//Controls.Menu();
 
 			//while (true)
