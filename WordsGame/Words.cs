@@ -1,16 +1,15 @@
 using System.Text.RegularExpressions;
-
-namespace WordGame
+namespace WordsGame
 {
 	internal class Words
 	{
-		internal static string[,] wordsarr;
+		internal static string[,] words_arr;
 		internal static char chr = ' ';
 		internal static string? word = "";
 
 		private static void SetWords()
 		{
-			wordsarr = new string[Player.players, 1];
+			words_arr = new string[Player.players, 1];
 		}
 		internal static void SetChar()
 		{
@@ -83,7 +82,7 @@ namespace WordGame
 					}
 				}
 				tempArr[id, words.GetLength(1) - 1] = word;
-				wordsarr = tempArr;
+				words_arr = tempArr;
 			}
 		}
 

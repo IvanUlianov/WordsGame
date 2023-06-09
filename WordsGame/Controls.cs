@@ -1,107 +1,109 @@
 using System.Text.RegularExpressions;
 
-namespace WordGame
+namespace WordsGame
 {
-	internal class Controls
-	{
-		internal static void Menu()
-		{
-			Console.Clear();
+    internal class Controls
+    {
+        internal static void Options()
+        {
+            Console.Clear();
 
-			var color = Console.ForegroundColor;
-			Console.ForegroundColor = ConsoleColor.Green;
-			string instruction = "Привет это игра в слова\n"
-			+ "набери !quit для завершения игры, !print для вывода всех слов, !score для вывода счёта\n"
-			+ "...жми что либо для начала игры...";
+            var color = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            string instruction = "Р”РѕСЃС‚СѓРїРЅС‹Рµ РєРѕРјР°РЅРґС‹ РІРѕ РІСЂРµРјСЏ РёРіСЂС‹.\n"
+            + "!quit РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹,\n"
+            + "!print РґР»СЏ РІС‹РІРѕРґР° РІСЃРµС… СЃР»РѕРІ,\n"
+            + "!score РґР»СЏ РІС‹РІРѕРґР° СЃС‡С‘С‚Р°.\n"
+            + "...Р¶РјРё С‡С‚Рѕ Р»РёР±Рѕ РґР»СЏ РЅР°С‡Р°Р»Р° РёРіСЂС‹...";
 
-			Console.WriteLine(instruction);
-			Console.ForegroundColor = color;
-			Console.ReadKey();
+            Console.WriteLine(instruction);
+            Console.ForegroundColor = color;
+            Console.ReadKey();
 
-			Player.SetPlayers();
-			Words.SetChar();
+            //Player.ChoicePlayers();
+            //Words.SetChar();
 		}
 
-		internal static void NumOfPlayers(int players)
-		{
-			while (true)
-			{
-				Console.Write("Введите номер игрока: ");
-				string? InputId = Console.ReadLine();
+        internal static void ChoicePlayers(int players)
+        {
+            while (true)
+            {
+                Console.Write("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РёРіСЂРѕРєР°: ");
+                string? InputId = Console.ReadLine();
 
-				if (!string.IsNullOrEmpty(InputId))
-				{
-					if (Regex.IsMatch(InputId, @"^[!]")) GameControls(InputId);
+                if (!string.IsNullOrEmpty(InputId))
+                {
+                    if (Regex.IsMatch(InputId, @"^[!]")) GameControls(InputId);
 
-					bool success = int.TryParse(InputId, out int tempId);
-					if (success)
-					{
-						if (tempId < 1 || tempId > players)
-						{
-							Console.WriteLine($"Введите число от 1 до {players}");
-						}
-						else
-						{
-							Player.id = tempId - 1;
-							break;
-						}
-					}
-					else
-					{
-						Console.WriteLine($"Введите число от 1 до {players}");
-					}
-				}
-			}
-		}
-		internal static void WordInput(char gameChar)
-		{
-			while (true)
-			{
-				Console.Write($"Введите слово на букву {gameChar}: ");
-				string? tempWord = Console.ReadLine();
+                    bool success = int.TryParse(InputId, out int tempId);
+                    if (success)
+                    {
+                        if (tempId < 1 || tempId > players)
+                        {
+                            Console.WriteLine($"Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ {players}");
+                        }
+                        else
+                        {
+                            Player.id = tempId - 1;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ {players}");
+                    }
+                }
+            }
+        }
+        internal static void WordInput(char gameChar)
+        {
+            while (true)
+            {
+                Console.Write($"Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ РЅР° Р±СѓРєРІСѓ {gameChar}: ");
+                string? tempWord = Console.ReadLine();
 
-				if (!string.IsNullOrEmpty(tempWord))
-				{
-					tempWord = tempWord.Trim().ToLower();
+                if (!string.IsNullOrEmpty(tempWord))
+                {
+                    tempWord = tempWord.Trim().ToLower();
 
-					if (Regex.IsMatch(tempWord, @"^[!]")) GameControls(tempWord);
+                    if (Regex.IsMatch(tempWord, @"^[!]")) GameControls(tempWord);
 
-					if (tempWord != gameChar.ToString() && tempWord != "")
-					{
-						Words.word = tempWord;
+                    if (tempWord != gameChar.ToString() && tempWord != "")
+                    {
+                        Words.word = tempWord;
 						break;
-					}
-					else
-					{
-						Console.WriteLine("Ошибка в вводе слова, повторите ввод");
-					}
-				}
-			}
-			Words.word = Words.CheckWords(Words.wordsarr, Words.word, Words.chr);
-		}
-		internal static void GameControls(string text)
-		{
-			var color = Console.ForegroundColor;
-			switch (text)
-			{
-				case ("!quit"):
-					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine("Игра законченна...\n жми что-то");
-					Console.ReadKey();
-					Environment.Exit(0);
-					break;
-				case ("!print"):
-					Console.ForegroundColor = ConsoleColor.Green;
-					var arr = Words.wordsarr;
-					Words.PrintArr(arr);
-					Console.ForegroundColor = color;
-					break;
-				case ("!score"):
-					Console.ForegroundColor = ConsoleColor.Blue;
-					Words.Score(Words.wordsarr, Player.players);
-					Console.ForegroundColor = color;
-					break;
-			}
-		}
-	}
+                    }
+                    else
+                    {
+                        Console.WriteLine("РћС€РёР±РєР° РІ РІРІРѕРґРµ СЃР»РѕРІР°, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ");
+                    }
+                }
+            }
+            Words.word = Words.CheckWords(Words.words_arr, Words.word, Words.chr);
+        }
+        internal static void GameControls(string text)
+        {
+            var color = Console.ForegroundColor;
+            switch (text)
+            {
+                case ("!quit"):
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("РРіСЂР° РѕРєРѕРЅС‡РµРЅР°...\n Р¶РјРё С‡С‚Рѕ-С‚Рѕ");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                    break;
+                case ("!print"):
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    var arr = Words.words_arr;
+                    Words.PrintArr(arr);
+                    Console.ForegroundColor = color;
+                    break;
+                case ("!score"):
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Words.Score(Words.words_arr, Player.players);
+                    Console.ForegroundColor = color;
+                    break;
+            }
+        }
+    }
 }
